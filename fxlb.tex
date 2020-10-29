@@ -1,0 +1,59 @@
+\documentclass{ctexart}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{caption}
+\newcommand{\innercell}[2]{\begin{tabular}{@{}p{#1em}@{}}#2\end{tabular}}
+\newcommand{\percent}[1]{$#1\%$}
+\newcounter{cnt}
+\setcounter{cnt}{1}
+\newcommand{\cntid}{\thecnt \addtocounter{cnt}{1}}
+\geometry{a4paper, scale = 0.75}
+\begin{document}
+	\begin{table}
+		\caption{风险列表}
+		\centering
+		\renewcommand\arraystretch{1.5}
+	\begin{tabular}{c|c|c|c|c|c|c}
+		\hline
+		\multirow{2}*{$\#$}&\multicolumn{2}{c|}{风险陈述}&\multirow{2}*{\innercell{5}{发生概率 ($0\sim100\%$)}}&\multirow{2}*{\innercell{4}{危害程度 ($1\sim 10$)}}&\multicolumn{1}{c|}{\multirow{2}*{应对方案}}&\multicolumn{1}{c}{\multirow{2}*{责任人}}\\\cline{2-3}
+		 &\multicolumn{1}{c|}{情况}&\multicolumn{1}{c|}{后果}& & & & \\ \hline
+		 \cntid&\innercell{5}{模块编码时间超出预期}&\innercell{5}{项目不能如期完成}&\percent{50}&7&\innercell{9}{定期召开例会，把握开发进度}&\innercell{4}{曾锴鹏 (开发工程师)}\\\hline
+		 \cntid
+		 &\innercell{5}{产品定义不明确，项目实现阶段修改产品定义}&\innercell{5}{项目大改，周期拖长}&\percent{30}&9&\innercell{9}{在定义阶段召开组内会议，确定出明确的产品定义，并不在后续阶段动摇产品定义}&\innercell{4}{李语焓 (项目经理)}\\\hline
+		 \cntid&\innercell{5}{服务器部署时遇到困难}&\innercell{5}{导致软件主要功能不能实现}&\percent{30}&8&\innercell{9}{事先制定好备用方案}&\innercell{4}{曾锴鹏 (集成工程师)}\\\hline
+		 \cntid&\innercell{5}{开发过程中遇到技术性困难}&\innercell{5}{项目停滞不前，部分设计目标不能实现}&\percent{30}&8&\innercell{9}{边开发边学习，查阅资料，请教专业人士}&\innercell{4}{李梦宁 (开发工程师)} \\\hline
+		 \cntid&\innercell{5}{产品规模编码难度比预想的更大}&\innercell{5}{周期延长}&\percent{60}&4&\innercell{9}{全员加班}&\innercell{4}{李语焓 (项目经理)}\\\hline
+		 \cntid&\innercell{5}{测试阶段未能发现隐藏的漏洞}&\innercell{5}{为软件正常运行埋下隐患，导致后续可能需要返工}&\percent{40}&6&\innercell{9}{测试阶段合理设计测试方式，合理设计测试用例}&\innercell{4}{李嘉鸿 (开发工程师)}\\\hline
+		 \cntid&\innercell{5}{库的功能和效果不能达到预期}&\innercell{5}{开发难度增大，部分功能难以实现}&\percent{30}&7&\innercell{9}{提前做好调研，选用熟悉的稳定可靠的库，提前做好备选方案}&\innercell{4}{曾锴鹏 (开发工程师)}\\\hline
+		 \cntid&\innercell{5}{不熟悉开发环境和开发工具}&\innercell{5}{开发效率较低，影响编码进度}&\percent{50}&4&\innercell{9}{边开发边学习，组员互相交流技术问题}&\innercell{4}{刘彦铭 (开发工程师)}\\\hline
+		 \cntid&\innercell{5}{实现阶段进一步扩展项目范畴}&\innercell{5}{项目复杂度和编码耗时超过预期}&\percent{60}&3&\innercell{9}{进入实现阶段前，明确产品需求，明确项目设计方案}&\innercell{4}{呙天砚 (分析工程师)} \\\hline
+		 \cntid&\innercell{5}{项目开发任务分工不合理}&\innercell{5}{开发效率低下}&\percent{30}&6&\innercell{9}{在项目开发计划中明确团队组织结构以及各成员的项目角色}&\innercell{4}{呙天砚 (分析工程师)}\\\hline
+		 
+	\end{tabular}
+	\end{table}
+\newpage
+\begin{table}
+	\centering
+	\captionsetup{justification=raggedleft,singlelinecheck=false}
+	\caption*{续表}
+	\renewcommand\arraystretch{1.5}
+	\begin{tabular}{c|c|c|c|c|c|c}
+		\hline
+		\multirow{2}*{$\#$}&\multicolumn{2}{c|}{风险陈述}&\multirow{2}*{\innercell{5}{发生概率 ($0\sim100\%$)}}&\multirow{2}*{\innercell{4}{危害程度 ($1\sim 10$)}}&\multicolumn{1}{c|}{\multirow{2}*{应对方案}}&\multicolumn{1}{c}{\multirow{2}*{责任人}}\\\cline{2-3}
+		&\multicolumn{1}{c|}{情况}&\multicolumn{1}{c|}{后果}& & & & \\ \hline
+		\cntid&\innercell{5}{部分成员不能全力投入开发}&\innercell{5}{开发进度受影响,周期延长}&\percent{30}&5&\innercell{9}{合理安排进度，合理分配任务，各成员之间互相帮助}&\innercell{4}{李语焓 (项目经理)}\\\hline
+		\cntid&\innercell{5}{开发工具、平台选择不当}&\innercell{5}{增加实现难度，实现效果不佳}&\percent{20}&7&\innercell{9}{前期充分调研，研究各开发工具的特点，权衡利弊}&\innercell{4}{李梦宁 (开发工程师)}\\\hline
+		\cntid&\innercell{5}{系统架构设计不合理}&\innercell{5}{设计目标难以实现}&\percent{20}&7&\innercell{9}{充分考虑系统的各种设计目标、与其他系统的集成、将来的维护需求、技术风险等因素}&\innercell{4}{李梦宁 (开发工程师)} \\\hline
+		\cntid&\innercell{5}{对象设计不合理}&\innercell{5}{增加编码的难度，影响架构的灵活性等}&\percent{20}&6&\innercell{9}{充分考虑软件的性能、可重用性、未来可能的变化等因素。兼顾设计的简洁性和架构的灵活性}&\innercell{4}{刘彦铭 (开发工程师)}\\\hline
+		\cntid&\innercell{5}{数据管理设计欠佳}&\innercell{5}{影响程序读写性能，浪费存储空间等}&\percent{20}&5&\innercell{9}{认真分析内存、文件和数据库等存储方式的特点，学习数据库相关技术}&\innercell{4}{刘彦铭 (开发工程师)}\\\hline
+		\cntid&\innercell{5}{运行设计不合理}&\innercell{5}{影响软件性能}&\percent{20}&3&\innercell{9}{认真分析并发需求，借鉴参照已有的类似项目的设计方案}&\innercell{4}{呙天砚 (开发工程师)}\\\hline
+		\cntid&\innercell{5}{前期部分源代码质量不高}&\innercell{5}{代码越发臃肿，难以拓展新功能}&\percent{10}&5&\innercell{9}{适当的重构部分代码}&\innercell{4}{李嘉鸿 (开发工程师)}\\\hline
+		\cntid&\innercell{5}{系统部署遇到困难}&\innercell{5}{软件不能正常打包发布}&\percent{10}&5&\innercell{9}{学习系统部署的方法，请教专业人士}&\innercell{4}{曾锴鹏 (集成工程师)}\\\hline
+		\cntid&\innercell{5}{代码管理出现问题}&\innercell{5}{导致进度的损失回退}&\percent{10}&5&\innercell{9}{编写过程中注意及时备份，采用科学的版本管理方法}&\innercell{4}{李语焓 (项目经理)}\\\hline
+		\cntid&\innercell{5}{项目急需有特定技能的人}&\innercell{5}{部分设计目标可能难以实现}&\percent{10}&3&\innercell{9}{应事先提前联系好可能需要的相关具有特定技能的人员}&\innercell{4}{李语焓 (项目经理)}\\\hline
+		
+	\end{tabular}
+\end{table}
+\end{document}

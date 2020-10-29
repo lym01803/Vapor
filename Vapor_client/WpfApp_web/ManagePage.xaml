@@ -1,0 +1,117 @@
+﻿<Page x:Class="WpfApp_web.Page1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp_web"
+      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+      xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="Page1">
+    <Page.Resources>
+        <Style x:Key="FlatProgressBar" TargetType="{x:Type ProgressBar}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid>
+                            <Image Name="PART_Track" Source="Image/bar1.png" HorizontalAlignment="Left" Stretch="Fill"/>
+                            <Image Name="PART_Indicator" Source="Image/bar2.png" HorizontalAlignment="Left" Stretch="Fill"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <local:OnHoverToVisibilityConverter x:Key="cvt1"/>
+        <local:OnHoverToOpacityConverter x:Key="cvt2"/>
+    </Page.Resources>
+    <Grid Margin="40,10,20,0">
+        <!--
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">本地管理页面</TextBlock>
+        -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
+            <WrapPanel x:Name="AppDetailsPanel" Visibility="Visible" Width="0" Margin="10,0,0,0"
+                       Orientation="Vertical">
+                <Button x:Name="CloseWrapPanelButton"  Click="CloseAppDetailsPanelButton_Click"
+                        Style="{DynamicResource SquareButtonStyle}" BorderThickness="0" 
+                        HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent">
+                    <iconPacks:PackIconFeatherIcons Kind="ArrowRightCircle" Width="30" Height="30"/>
+                </Button>
+                <Border x:Name="AppInfoBorder" Width="320"/>
+            </WrapPanel>
+        </ScrollViewer>
+
+        <ScrollViewer x:Name="Scroller" Grid.Column="0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Background="Transparent">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <WrapPanel Visibility="Collapsed" Grid.Row="0" Orientation="Vertical" x:Name="DownloadingPart">
+                    <TextBlock Text="正在下载安装的游戏" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,0,2"/>
+                    <StackPanel x:Name="DownloadingPanel" Orientation="Vertical"/>
+                </WrapPanel>
+
+                <TextBlock x:Name="listTitle" Grid.Row="1" Text="已下载游戏列表" FontSize="24" VerticalAlignment="Center" Margin="0,3,0,3"/>
+                
+                <ItemsControl x:Name="AppsPanel" Grid.Row="2">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Width="330" Height="330" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                    Visibility="{Binding Available, Converter={StaticResource cvt1}}">
+                                <local:ExTile  HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Id="{Binding tileId}"
+                                           Title=""
+                                           RealTitle="{Binding tileTitle}"
+                                           Background="Transparent"
+                                           Foreground="{Binding tileColor}"
+                                           Width="280" Height="280"
+                                           Click="Tile_Click"
+                                           VerticalContentAlignment="Top"
+                                           MouseEnter="Tile_MouseEnter" 
+                                           MouseLeave="Tile_MouseLeave"
+                                           OnHover="false">
+                                    <Grid>
+                                        <Image Source="{Binding tileImgSrc}" Height="280" Width="280" Stretch="UniformToFill"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        </Image>
+                                        <Image Source="Image/TileBackground2.jpg" Width="280" Height="280" Stretch="UniformToFill"
+                                               Opacity="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1,
+                                                                    AncestorType={x:Type local:ExTile}},  Path=OnHover, Converter={StaticResource cvt2}}"/>
+                                        <!--
+                                        <Rectangle Height="280" Width="280">
+                                            <Rectangle.Fill>
+                                                <SolidColorBrush Color="#4AB4CE"
+                                                                 Opacity="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1,
+                                                                    AncestorType={x:Type local:ExTile}},  Path=OnHover, Converter={StaticResource cvt2}}"/>
+                                            </Rectangle.Fill>
+                                        </Rectangle>
+                                        -->
+                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                                   TextAlignment="Center"
+                                                   TextWrapping="Wrap"
+                                                   Text="{Binding tileTitle}" FontSize="25" Foreground="White" Width="240"
+                                                   Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1,
+                                                                    AncestorType={x:Type local:ExTile}},  Path=OnHover, Converter={StaticResource cvt1}}"/>
+                                    </Grid>
+                                </local:ExTile>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl> 
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>
